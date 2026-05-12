@@ -6,7 +6,11 @@
     filterButtons.forEach((btn) => {
       btn.addEventListener('click', () => {
         const selected = btn.dataset.filter;
-        filterButtons.forEach((b) => b.classList.toggle('active', b === btn));
+        filterButtons.forEach((b) => {
+          const active = b === btn;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
         filterCards.forEach((card) => {
           const categories = card.dataset.category.split(' ');
           const visible = selected === 'alle' || categories.includes(selected);
@@ -39,7 +43,11 @@
   if (milestoneButtons.length && milestoneText) {
     milestoneButtons.forEach((btn) => {
       btn.addEventListener('click', () => {
-        milestoneButtons.forEach((b) => b.classList.toggle('active', b === btn));
+        milestoneButtons.forEach((b) => {
+          const active = b === btn;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
         milestoneText.textContent = btn.dataset.detail;
       });
     });
